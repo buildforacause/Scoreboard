@@ -35,6 +35,7 @@
             <ul class="list-unstyled mt-3 mb-4">
               <li>Dialogbaazi: <span id="t1g1"></span></li>
               <li>Gaana: <span id="t1g2"></span></li>
+              <li>Tongue Twister: <span id="t1g3"></span></li>
             </ul>
             <button type="button" class="w-100 btn btn-lg btn-primary">Total: <span id="t1total"></span></button>
           </div>
@@ -51,6 +52,7 @@
             <ul class="list-unstyled mt-3 mb-4">
               <li>Dialogbaazi: <span id="t2g1"></span></li>
               <li>Gaana: <span id="t2g2"></span></li>
+              <li>Tongue Twister: <span id="t2g3"></span></li>
             </ul>
             <button type="button" class="w-100 btn btn-lg btn-primary">Total: <span id="t2total"></span></button>
           </div>
@@ -67,6 +69,7 @@
             <ul class="list-unstyled mt-3 mb-4">
               <li>Dialogbaazi: <span id="t3g1"></span></li>
               <li>Gaana: <span id="t3g2"></span></li>
+              <li>Tongue Twister: <span id="t3g3"></span></li>
             </ul>
             <button type="button" class="w-100 btn btn-lg btn-primary">Total: <span id="t3total"></span></button>
           </div>
@@ -83,6 +86,7 @@
             <ul class="list-unstyled mt-3 mb-4">
               <li>Dialogbaazi: <span id="t4g1"></span></li>
               <li>Gaana: <span id="t4g2"></span></li>
+              <li>Tongue Twister: <span id="t4g3"></span></li>
             </ul>
             <button type="button" class="w-100 btn btn-lg btn-primary">Total: <span id="t4total"></span></button>
           </div>
@@ -91,30 +95,35 @@
     </div>
 
   </main>
-
+  <br>
+  <a class="btn btn-success w-100 mt-3 " href="add.html">Click here to add score</a>
 
 </div>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <script>
         if (localStorage.getItem("testObject") === null) {
-            var testObject = { 't1': {'g1': 0, 'g2': 0}, 't2': {'g1': 0, 'g2': 0},'t3': {'g1': 0, 'g2': 0},'t4': {'g1': 0, 'g2': 0} };
+            var testObject = { 't1': {'g1': 0, 'g2': 0, 'g3':0}, 't2': {'g1': 0, 'g2': 0, 'g3':0},'t3': {'g1': 0, 'g2': 0, 'g3':0},'t4': {'g1': 0, 'g2': 0, 'g3':0} };
             localStorage.setItem('testObject', JSON.stringify(testObject));
         }
         var obj = JSON.parse(localStorage.getItem('testObject'));
 
-        $("#t1g1").text(obj['t1']['g1'])
-        $("#t1g2").text(obj['t1']['g2'])
-        $("#t1total").text(obj['t1']['g1'] + obj['t1']['g2'])
-        $("#t2g1").text(obj['t2']['g1'])
-        $("#t2g2").text(obj['t2']['g2'])
-        $("#t2total").text(obj['t2']['g1'] + obj['t2']['g2'])
-        $("#t3g1").text(obj['t3']['g1'])
-        $("#t3g2").text(obj['t3']['g2'])
-        $("#t3total").text(obj['t3']['g1'] + obj['t3']['g2'])
-        $("#t4g1").text(obj['t4']['g1'])
-        $("#t4g2").text(obj['t4']['g2'])
-        $("#t4total").text(obj['t4']['g1'] + obj['t4']['g2'])
+        $("#t1g1").text(obj['t1']['g1']);
+        $("#t1g2").text(obj['t1']['g2']);
+        $("#t1g3").text(obj['t1']['g3']);
+        $("#t1total").text(parseInt(obj['t1']['g1']) + parseInt(obj['t1']['g2'])+ parseInt(obj['t1']['g3']));
+        $("#t2g1").text(obj['t2']['g1']);
+        $("#t2g2").text(obj['t2']['g2']);
+        $("#t2g3").text(obj['t2']['g3']);
+        $("#t2total").text(parseInt(obj['t2']['g1']) + parseInt(obj['t2']['g2'])+ parseInt(obj['t2']['g3']));
+        $("#t3g1").text(obj['t3']['g1']);
+        $("#t3g2").text(obj['t3']['g2']);
+        $("#t3g3").text(obj['t3']['g3']);
+        $("#t3total").text(parseInt(obj['t3']['g1']) + parseInt(obj['t3']['g2'])+ parseInt(obj['t3']['g3']));
+        $("#t4g1").text(obj['t4']['g1']);
+        $("#t4g2").text(obj['t4']['g2']);
+        $("#t4g3").text(obj['t4']['g3']);
+        $("#t4total").text(parseInt(obj['t4']['g1']) + parseInt(obj['t4']['g2']) + parseInt(obj['t4']['g3']));
 
     </script>
 
