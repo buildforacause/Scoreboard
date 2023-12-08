@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ScoreBoard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+        body {
+        background-image: linear-gradient(180deg, var(--bs-secondary-bg), var(--bs-body-bg) 100px, var(--bs-body-bg));
+        }
+
+        .container {
+        max-width: 960px;
+        }
+
+        .pricing-header {
+        max-width: 700px;
+        }
+    </style>
+  </head>
+  <body>
+
+
+<div class="container-fluid py-3">
+    <form id="formform" class="row g-3 needs-validation" novalidate>
+        <div class="col-md-6">
+          <label for="validationCustom02" class="form-label">Team:</label>
+            <select id="team" class="form-select" aria-label="Default select example" required>
+                <option selected value="t1">Aileen's Rockstars</option>
+                <option value="t2">Ayben's Angels</option>
+                <option value="t3">Annie's MasterMinds</option>
+                <option value="t4">Sapna's SuperStars</option>
+            </select>
+          <div class="invalid-feedback">
+            Please Select !
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="validationCustomUsername" class="form-label">Game:</label>
+          <div class="input-group has-validation">
+            <select id="game" class="form-select" aria-label="Default select example" required>
+                <option selected value="g1">Dialogbaazi</option>
+                <option value="g2">Gaana</option>
+            </select>
+            <div class="invalid-feedback">
+              Please Select.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <label for="validationCustom03" class="form-label">Score:</label>
+          <input type="number" class="form-control" id="score" required>
+          <div class="invalid-feedback">
+            Please Enter Score.
+          </div>
+        </div>
+        <div class="col-md-12">
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+      </form>
+
+
+</div>
+<br><br><br><br><br><br><br><br>
+<button class="btn btn-danger w-100 mt-5 " onclick="localStorage.clear();">DONT PRESS</button>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+    <script>
+        (() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})();
+
+if (localStorage.getItem("testObject") === null) {
+    var testObject = { 't1': {'g1': 0, 'g2': 0}, 't2': {'g1': 0, 'g2': 0},'t3': {'g1': 0, 'g2': 0},'t4': {'g1': 0, 'g2': 0} };
+    localStorage.setItem('testObject', JSON.stringify(testObject));
+}
+
+$("#formform").on("submit", function (e) {
+  e.preventDefault();
+
+  // Retrieve the existing object from localStorage
+  var retrievedObject = JSON.parse(localStorage.getItem('testObject')) || {};
+
+  // Get form values
+  var team = $("#team").val();
+  var game = $("#game").val();
+  var score = parseInt($("#score").val(), 10); // Parse score as an integer
+
+  // Ensure the nested structure exists
+  if (!retrievedObject[team]) {
+    retrievedObject[team] = {};
+  }
+
+  if (!retrievedObject[team][game]) {
+    retrievedObject[team][game] = 0;
+  }
+
+  // Update the score
+  retrievedObject[team][game] += score;
+
+  // Save the updated object back to localStorage
+  localStorage.setItem('testObject', JSON.stringify(retrievedObject));
+  window.location.reload();
+});
+
+    </script>
+  
+</body>
+</html>
